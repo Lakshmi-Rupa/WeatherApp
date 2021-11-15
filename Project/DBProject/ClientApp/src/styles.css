@@ -1,16 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  overflow: hidden;
 }
 
-code {
-  color: #e01a76;
+.container {
+  min-height: 90vh;
+  min-width: 100%;
+  background-image: url("./assets/Images/background.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.card {
+  width: 600px;
+  min-height: 60vh;
+  background-color: #c4c4c4;
+  border-radius: 150px;
+  transform: translateX(-300%);
 }

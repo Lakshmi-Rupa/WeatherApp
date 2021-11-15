@@ -20,6 +20,9 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { WeatherSearchComponent } from './weather-search/weather-search.component';
+import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
+import { WeatherService } from "./shared/services/weather.service";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import { WeatherSearchComponent } from './weather-search/weather-search.componen
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    WeatherSearchComponent
+    WeatherSearchComponent,
+    WeatherForecastComponent
   ],
   imports: [
     CommonModule,
@@ -47,17 +51,18 @@ import { WeatherSearchComponent } from './weather-search/weather-search.componen
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'weather-search', component: WeatherSearchComponent },
+      { path: 'weather-forecast/:details', component: WeatherForecastComponent },
+      { path: 'weather-forecast', component: WeatherForecastComponent },
     ], { relativeLinkResolution: 'legacy' })
   ],
   exports: [
    
   ],
-  providers: [],
+  providers: [WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
