@@ -16,6 +16,9 @@
   background-image: url("./assets/Images/background.jpg");
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {

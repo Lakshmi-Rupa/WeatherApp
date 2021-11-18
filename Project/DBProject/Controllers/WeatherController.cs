@@ -5,6 +5,7 @@ using DBProject.Services;
 using DBProject.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,15 @@ namespace DBProject.Controllers
     public class WeatherController : ControllerBase
     {
         private readonly IWeatherService _weatherService;
+        private readonly ILogger<WeatherController> _logger;
+        private readonly WeatherDbContext _context;
 
-        public WeatherController(IWeatherService weatherService)
+        public WeatherController(IWeatherService weatherService, ILogger<WeatherController> logger
+            , WeatherDbContext context)
         {
             _weatherService = weatherService;
+            _context = context;
+            _logger = logger;
         }
         //api/weather/currentweather
         [HttpGet("currentWeatherByCity/{city}")]
@@ -29,6 +35,14 @@ namespace DBProject.Controllers
 
             //Log.Information($"Getting Current Weather by city id from {Request.Headers["Origin"]}");
             var response = await _weatherService.GetWeatherByCityNameAsync(city);
+
+            City cityModel = new City();
+            cityModel.Name = response.Name;
+            cityModel.Id = response.Id;
+            cityModel.cityId = 0;
+
+            _context.City.Add(cityModel);
+            await _context.SaveChangesAsync();
 
             if (response == null)
             {

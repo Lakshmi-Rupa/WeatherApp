@@ -8,6 +8,8 @@ namespace DBProject.Models
 {
     public class WeatherModel
     {
+        public WeatherModel() { }
+
         public Coord Coord { get; set; }
         public Weather[] Weather { get; set; }
         public Main Main { get; set; }
