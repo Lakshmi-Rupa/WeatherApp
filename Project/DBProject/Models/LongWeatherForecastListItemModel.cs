@@ -12,9 +12,13 @@ namespace DBProject.Models
 {
     public class LongWeatherForecastListItemModel
     {
+        [NotMapped]
         public Main Main { get; set; }
+        [NotMapped]
         public Wind Wind { get; set; }
+        [NotMapped]
         public Weather[] Weather { get; set; }
+        [NotMapped]
         public Clouds Clouds { get; set; }
 
         public string Dt_txt { get; set; }

@@ -12,7 +12,7 @@ namespace DBProject.Models
     public class City
     {
         [Key, Column("city_id")]
-        public int cityId { get; set; }
+        public int CityId { get; set; }
         [Column("id")]
         public int Id { get; set; }
         [Column("name")]
@@ -21,8 +21,8 @@ namespace DBProject.Models
         [Column("country")]
         public string Country { get; set; }
         [Column("population")]
-        public double Population { get; set; }
+        public string Population { get; set; }
         [Column("timezone")]
-        public float Timezone { get; set; }
+        public string Timezone { get; set; }
     }
 }

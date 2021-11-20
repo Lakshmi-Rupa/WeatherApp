@@ -22,6 +22,7 @@ namespace DBProject.Models
         {
             modelBuilder.HasDefaultSchema("dbo");
             modelBuilder.Entity<LongWeatherForecastListItemModel>().HasNoKey();
+            modelBuilder.Entity<LongWeatherForecastModel>().HasNoKey();
         }
 
         public virtual DbSet<Clouds> Clouds { get; set; }
@@ -30,6 +31,7 @@ namespace DBProject.Models
         public virtual DbSet<Sys> Sys { get; set; }
         public virtual DbSet<Weather> Weather { get; set; }
         public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Wind> Wind { get; set; }
         public virtual DbSet<LongWeatherForecastListItemModel> LongWeatherForecastListItemModel { get; set; }
         public virtual DbSet<LongWeatherForecastModel> LongWeatherForecastModel { get; set; }
         public virtual DbSet<WeatherModel> WeatherModel { get; set; }
