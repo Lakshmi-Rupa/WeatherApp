@@ -94,7 +94,7 @@ namespace DBProject
                     var contextFeature = ctx.Features.Get<IExceptionHandlerFeature>();
                     if (contextFeature != null)
                     {
-                        await ctx.Response.WriteAsync(new ExceptionInfo()
+                            await ctx.Response.WriteAsync(new ExceptionInfo()
                         {
                             StatusCode = ctx.Response.StatusCode,
                             Message = "Internal Server Error."

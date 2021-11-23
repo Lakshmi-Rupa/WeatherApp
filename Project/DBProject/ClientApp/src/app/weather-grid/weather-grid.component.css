@@ -1,0 +1,23 @@
+.header-align-left {
+  text-align: left;
+  justify-content: flex-end;
+  padding: 21px 0;
+}
+
+table {
+  width: 100%;
+}
+
+.form {
+  min-width: 500px;
+  max-width: 1000px;
+  width: 100%;
+  height: 100vh;
+  padding-top: 20px;
+  background-color: #c4c4c4;
+}
+
+.mat-sort-header-arrow {
+  color: #000000;
+}
+

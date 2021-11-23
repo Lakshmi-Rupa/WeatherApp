@@ -13,8 +13,7 @@ using System.Threading.Tasks;
 
 namespace DBProject.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Route("api/[controller]")]
     public class WeatherController : ControllerBase
     {
         private readonly IWeatherService _weatherService;
@@ -87,7 +86,7 @@ namespace DBProject.Controllers
 
                 #region
                 Coord coordModel = new Coord();
-                coordModel.Coord_id = 0;
+                coordModel.CoordId = 0;
                 coordModel.CityId = city_id;
                 coordModel.Lat = response.Coord.Lat;
                 coordModel.Lon = response.Coord.Lon;

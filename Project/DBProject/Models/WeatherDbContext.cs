@@ -35,7 +35,8 @@ namespace DBProject.Models
         public virtual DbSet<LongWeatherForecastListItemModel> LongWeatherForecastListItemModel { get; set; }
         public virtual DbSet<LongWeatherForecastModel> LongWeatherForecastModel { get; set; }
         public virtual DbSet<WeatherModel> WeatherModel { get; set; }
-        
+        public virtual DbSet<WeatherGrid> WeatherGrid { get; set; }
+
         public virtual void SetModified<T>(T entity)
         {
             Entry(entity).State = EntityState.Modified;

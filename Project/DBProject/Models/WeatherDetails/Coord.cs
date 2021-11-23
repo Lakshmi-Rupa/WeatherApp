@@ -11,13 +11,13 @@ namespace DBProject.Models.WeatherDetails
     public class Coord
     {
         [Key, Column("coord_id")]
-        public int Coord_id { get; set; }
+        public int CoordId { get; set; }
         [Column("city_id")]
         public int CityId { get; set; }
         [Column("Lon")]
-        public float Lon { get; set; }
+        public double Lon { get; set; }
         [Column("Lat")]
-        public float Lat { get; set; }
+        public double Lat { get; set; }
 
         public override string ToString()
         {

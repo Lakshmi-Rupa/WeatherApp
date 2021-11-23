@@ -15,7 +15,7 @@ namespace DBProject.Models.WeatherDetails
         [Column("city_id")]
         public int CityId { get; set; }
         [Column("speed")]
-        public float Speed { get; set; }
+        public double Speed { get; set; }
         [Column("deg")]
         public int Deg { get; set; }
     }
