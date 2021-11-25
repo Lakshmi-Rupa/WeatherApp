@@ -14,7 +14,7 @@ import { DropdownService } from '../shared/services/dropdown.service';
 })
 export class WeatherGridComponent implements OnInit {
 
-  displayedColumns: string[] = ["name", "country", "cloudiness", "temperature", "weatherCondition", "windSpeed"];
+  displayedColumns: string[] = ["edit", "name", "country", "cloudiness", "temperature", "weatherCondition", "windSpeed"];
   opened = false;
   dataSource: MatTableDataSource<WeatherGrid>;
   public _userDetail: WeatherGrid[];
@@ -31,13 +31,13 @@ export class WeatherGridComponent implements OnInit {
   }
   getUsers() {
     this.dropDownService.getWeatherGrid().subscribe(
-        d => {
-            this._userDetail = d;
-            this.dataSource = new MatTableDataSource<WeatherGrid>(this._userDetail);
-            this.dataSource.paginator = this.paginator as MatPaginator;
-            this.dataSource.sort = this.sort as MatSort;
-        }
-      );
-    }
+      d => {
+        this._userDetail = d;
+        this.dataSource = new MatTableDataSource<WeatherGrid>(this._userDetail);
+        this.dataSource.paginator = this.paginator as MatPaginator;
+        this.dataSource.sort = this.sort as MatSort;
+      }
+    );
+  }
 
 }

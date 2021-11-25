@@ -4,60 +4,22 @@
      class="container">
 
   <form [formGroup]="formfilter" class="form">
-    <!--<mat-form-field >
-      <mat-label>Select City</mat-label>
-      <mat-select [formControl]="cityName" [(value)]="selected">
-        <mat-option >{{selected}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <p>You selected: {{selected}}</p>-->
-
     <div class="form-group">
       <div class="row">
-        <div class="col-sm-3"></div>
+        <div class="col-sm-2"></div>
         <div class="col-sm-3">
           <label>City Name</label>
         </div>
         <div class="col-sm-4">
           <select [(ngModel)]="selectCity" class="form-control" formControlName="cityName" required>
             <option value="">-Please select-</option>
-            <option *ngFor="let cityName of _cityNames" [value]="cityName.id">
+            <option *ngFor="let cityName of _cityNames" [value]="cityName.name">
               {{cityName.name}}
             </option>
           </select>
         </div>
       </div>
       <br />
-      <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-3">
-          <label>Cloudiness</label>
-        </div>
-        <div class="col-sm-4">
-          <select [(ngModel)]="selectCloudiness" class="form-control" formControlName="cloudAll" required>
-            <option value="">-Please select-</option>
-            <option *ngFor="let all of _cloudiness" [value]="all.all">
-              {{all.all}}
-            </option>
-          </select>
-        </div>
-      </div>
-      <br />
-      <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-3">
-          <label>Temperature</label>
-        </div>
-        <div class="col-sm-4">
-          <select [(ngModel)]="selectTemperature" class="form-control" formControlName="temperature" required>
-            <option value="">-Please select-</option>
-            <option *ngFor="let temperature of _temperature" [value]="temperature.temp">
-              {{temperature.temp}}
-            </option>
-          </select>
-        </div>
-      </div>
     </div>
   </form>
 </div>

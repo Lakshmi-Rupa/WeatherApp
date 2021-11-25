@@ -29,6 +29,7 @@ import { DropdownService } from "./shared/services/dropdown.service";
 import { WeatherGridComponent } from './weather-grid/weather-grid.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { EditWeatherGridComponent } from './edit-weather-grid/edit-weather-grid.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MatSortModule } from '@angular/material/sort';
     WeatherSearchComponent,
     WeatherForecastComponent,
     WeatherFilterComponent,
-    WeatherGridComponent
+    WeatherGridComponent,
+    EditWeatherGridComponent
   ],
   imports: [
     CommonModule,
@@ -69,6 +71,7 @@ import { MatSortModule } from '@angular/material/sort';
       { path: 'weather-forecast', component: WeatherForecastComponent },
       { path: 'weather-filter', component: WeatherFilterComponent },
       { path: 'weather-grid', component: WeatherGridComponent },
+      { path: 'edit-weather-grid', component: EditWeatherGridComponent },
     ], { relativeLinkResolution: 'legacy' })
   ],
   exports: [
