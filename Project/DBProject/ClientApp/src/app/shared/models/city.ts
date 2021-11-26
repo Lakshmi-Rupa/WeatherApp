@@ -8,4 +8,7 @@ export class City {
   country: string;
   population: number;
   timezone: number;
+  createdDate?: Date | string;
+  updatedDate?: Date | string;
+  deleteIndicator?: boolean;
 }

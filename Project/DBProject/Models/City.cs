@@ -24,5 +24,11 @@ namespace DBProject.Models
         public string Population { get; set; }
         [Column("timezone")]
         public string Timezone { get; set; }
+        [Column("createdDate")]
+        public DateTime? CreatedDate { get; set; }
+        [Column("updatedDate")]
+        public DateTime? UpdatedDate { get; set; }
+        [Column("isDeleted")]
+        public bool? DeleteIndicator { get; set; }
     }
 }

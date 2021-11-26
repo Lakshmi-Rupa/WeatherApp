@@ -48,4 +48,8 @@ export class DropdownService {
     return this.httpClient.get<WeatherGrid[]>('/api/DropDown/getWeatherGrid');
   }
 
+  public deleteWeatherGridById(cityId: number): Observable<WeatherGrid[]> {
+    return this.httpClient.delete<WeatherGrid[]>('/api/DropDown/DeleteWeatherGridById/' + cityId);
+  }
+
 }

@@ -14,10 +14,10 @@ import { DropdownService } from '../shared/services/dropdown.service';
 })
 export class WeatherGridComponent implements OnInit {
 
-  displayedColumns: string[] = ["edit", "name", "country", "cloudiness", "temperature", "weatherCondition", "windSpeed"];
+  displayedColumns: string[] = ["edit", "delete", "name", "country", "cloudiness", "temperature", "weatherCondition", "windSpeed", "createdDate", "updatedDate"];
   opened = false;
   dataSource: MatTableDataSource<WeatherGrid>;
-  public _userDetail: WeatherGrid[];
+  public _weatherDetails: WeatherGrid[];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
   @ViewChild(MatSort, { static: true }) sort: MatSort | undefined;
@@ -26,18 +26,29 @@ export class WeatherGridComponent implements OnInit {
     private dropDownService: DropdownService) { }
 
   ngOnInit() {
-    this.getUsers();
-    this.dataSource = new MatTableDataSource<WeatherGrid>(this._userDetail);
+    this.getWeatherGrid();
+    this.dataSource = new MatTableDataSource<WeatherGrid>(this._weatherDetails);
   }
-  getUsers() {
+  getWeatherGrid() {
     this.dropDownService.getWeatherGrid().subscribe(
       d => {
-        this._userDetail = d;
-        this.dataSource = new MatTableDataSource<WeatherGrid>(this._userDetail);
+        this._weatherDetails = d;
+        this.dataSource = new MatTableDataSource<WeatherGrid>(this._weatherDetails);
         this.dataSource.paginator = this.paginator as MatPaginator;
         this.dataSource.sort = this.sort as MatSort;
       }
     );
   }
+
+  deleteById(cityId: number) {
+    if (confirm("Are you sure you want to delete this ?")) {
+      this.dropDownService.deleteWeatherGridById(cityId).subscribe(user => {
+        this.getWeatherGrid();
+      });
+      }
+      else {
+        return false;
+      }
+    }
 
 }

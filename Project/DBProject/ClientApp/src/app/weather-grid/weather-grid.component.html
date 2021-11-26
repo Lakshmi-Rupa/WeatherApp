@@ -18,28 +18,38 @@
           </ng-container>
 
           <ng-container matColumnDef="country">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> country </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
             <td mat-cell *matCellDef="let row" class="header-align-left"> {{row.country}} </td>
           </ng-container>
 
           <ng-container matColumnDef="cloudiness">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> cloudiness </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cloudiness </th>
             <td mat-cell *matCellDef="let row" class="header-align-left"> {{row.cloudiness}} </td>
           </ng-container>
 
           <ng-container matColumnDef="temperature">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> temperature </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Temperature </th>
             <td mat-cell *matCellDef="let row" class="header-align-left"> {{row.temperature}} </td>
           </ng-container>
 
           <ng-container matColumnDef="weatherCondition">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> weatherCondition </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Weather Condition </th>
             <td mat-cell *matCellDef="let row" class="header-align-left"> {{row.weatherCondition}} </td>
           </ng-container>
 
           <ng-container matColumnDef="windSpeed">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> windSpeed </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Wind Speed </th>
             <td mat-cell *matCellDef="let row" class="header-align-left"> {{row.windSpeed}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="createdDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created Date </th>
+            <td mat-cell *matCellDef="let row" class="header-align-left"> {{row.createdDate | date: "MM-dd-yyyy"}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="updatedDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated Date </th>
+            <td mat-cell *matCellDef="let row" class="header-align-left"> {{row.updatedDate | date: "MM-dd-yyyy"}} </td>
           </ng-container>
 
           <ng-container matColumnDef="edit">
@@ -47,9 +57,19 @@
             <td mat-cell *matCellDef="let row" class="header-align-left">
               <a mat-icon-button aria-label="Example icon button with a vertical three dot icon"
                  matTooltip="Edit" class="iconbutton" [state]="{ cityName:row.name }"
-                 color="primary" routerLink="/edit-weather-grid" >
+                 color="primary" routerLink="/edit-weather-grid">
                 <mat-icon>edit</mat-icon>
               </a>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+            <td mat-cell *matCellDef="let row" class="header-align-left">
+              <button mat-icon-button color="primary" (click)="deleteById(row.cityId)"
+                      aria-label="Example icon button with a delete icon" matTooltip="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
             </td>
           </ng-container>
 

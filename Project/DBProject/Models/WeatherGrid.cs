@@ -24,6 +24,10 @@ namespace DBProject.Models
         public string WeatherCondition { get; set; }
         [Column("speed")]
         public double WindSpeed { get; set; }
-        
+        [Column("createdDate")]
+        public DateTime? CreatedDate { get; set; }
+        [Column("updatedDate")]
+        public DateTime? UpdatedDate { get; set; }
+
     }
 }

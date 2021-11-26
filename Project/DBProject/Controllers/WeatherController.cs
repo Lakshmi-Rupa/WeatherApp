@@ -36,7 +36,7 @@ namespace DBProject.Controllers
             //Log.Information($"Getting Current Weather by city id from {Request.Headers["Origin"]}");
             var response = await _weatherService.GetWeatherByCityNameAsync(city);
 
-            var cityExists = _context.City.Where(x => x.Id == response.Id).ToList();
+            var cityExists = _context.City.Where(x => x.Id == response.Id && x.DeleteIndicator == false).ToList();
 
             if (cityExists.Count == 0)
             {
@@ -79,6 +79,9 @@ namespace DBProject.Controllers
             cityModel.CityId = 0;
             cityModel.Timezone = response.Timezone;
             cityModel.Country = response.Sys.Country;
+            cityModel.CreatedDate = DateTime.Now.Date;
+            cityModel.UpdatedDate = DateTime.Now.Date;
+            cityModel.DeleteIndicator = false;
             _context.City.Add(cityModel);
             await _context.SaveChangesAsync();
             city_id = cityModel.CityId;
@@ -159,6 +162,7 @@ namespace DBProject.Controllers
             cityModel.Id = response.Id;
             cityModel.Timezone = response.Timezone;
             cityModel.Country = response.Sys.Country;
+            cityModel.UpdatedDate = DateTime.Now.Date;
             _context.Entry(cityModel).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             city_id = cityModel.CityId;

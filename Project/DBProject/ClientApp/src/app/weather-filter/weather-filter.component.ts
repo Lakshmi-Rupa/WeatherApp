@@ -13,6 +13,7 @@ import { City } from '../shared/models/city';
 import { DropdownService } from '../shared/services/dropdown.service';
 import { Clouds } from '../shared/models/Clouds';
 import { Main } from '../shared/models/main';
+import { WeatherModel } from '../shared/models/weather.model';
 
 @Component({
   selector: 'app-weather-filter',
@@ -35,7 +36,7 @@ export class WeatherFilterComponent implements OnInit {
   public _cityNames: City[];
   public _cloudiness: Clouds[];
   public _temperature: Main[];
-
+  weatherDetails: WeatherModel = new WeatherModel();
 
   ngOnInit(): void {
     this.formfilter = this.fb.group({

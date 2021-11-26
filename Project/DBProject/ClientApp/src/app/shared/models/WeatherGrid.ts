@@ -6,4 +6,6 @@ export class WeatherGrid {
   temperature: number;
   weatherCondition: string;
   windSpeed: number;
+  createdDate?: Date | string;
+  updatedDate?: Date | string;
 }

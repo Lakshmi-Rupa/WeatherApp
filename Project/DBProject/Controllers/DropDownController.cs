@@ -4,6 +4,7 @@ using DBProject.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -69,6 +70,33 @@ namespace DBProject.Controllers
         public async Task<ActionResult<IEnumerable<WeatherGrid>>> GetWeatherGrid()
         {
             return await _context.WeatherGrid.OrderBy(x => x.CityId).ToListAsync();
+        }
+
+        [HttpDelete("DeleteWeatherGridById/{cityId}")]
+        public async Task<ActionResult<WeatherGrid>> DeleteWeatherGridById(int cityId)
+        {
+            var weatherGrid = default(WeatherGrid);
+            var cityModel = default(City);
+
+            try
+            {
+                cityModel = await _context.City.FindAsync(cityId);
+                if (cityModel == null)
+                {
+                    return NotFound();
+                }
+
+                cityModel.DeleteIndicator = true;
+                cityModel.UpdatedDate = DateTime.Now.Date;
+                var rowsAffected = _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex);
+                //return this.Problem(ex.ToString(), package, 409, string.Empty, typeof(Package).ToString());
+            }
+
+            return weatherGrid;
         }
     }
 }
