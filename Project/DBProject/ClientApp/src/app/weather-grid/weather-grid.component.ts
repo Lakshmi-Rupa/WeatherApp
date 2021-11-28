@@ -28,7 +28,15 @@ export class WeatherGridComponent implements OnInit {
   ngOnInit() {
     this.getWeatherGrid();
     this.dataSource = new MatTableDataSource<WeatherGrid>(this._weatherDetails);
+
   }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
   getWeatherGrid() {
     this.dropDownService.getWeatherGrid().subscribe(
       d => {
