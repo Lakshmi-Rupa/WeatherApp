@@ -10,25 +10,20 @@ import { LongWeatherForecastModel } from "../models/longWeatherForecastModel";
 export class WeatherService {
   constructor(private httpClient: HttpClient) {}
 
-  private baseUrl: string = "https://localhost:44316/api/weather/";
+  //private baseUrl: string = "https://localhost:44316/api/weather/";
 
   getWeatherByCity(city: string): Observable<Response<WeatherModel>> {
     //console.log(city);
     //console.log(this.baseUrl + "currentweatherByCity/" + city);
-    return this.httpClient.get<Response<WeatherModel>>(
-      this.baseUrl + "currentweatherByCity/" + city
-    );
+    return this.httpClient.get<Response<WeatherModel>>('/api/weather/currentweatherByCity/'+ city);
   }
-
+  
   getWeatherByCityID(cityID: number): Observable<Response<WeatherModel>> {
-    return this.httpClient.get<Response<WeatherModel>>(
-      this.baseUrl + "currentweatherByCityID/" + cityID
-    );
+    return this.httpClient.get<Response<WeatherModel>>('/api/weather/currentweatherByCityID/'+ cityID);
   }
 
   getWeatherByCityCoord(coord: Coord): Observable<Response<WeatherModel>> {
-    return this.httpClient.get<Response<WeatherModel>>(
-      this.baseUrl + "currentweatherByCityCoord",
+    return this.httpClient.get<Response<WeatherModel>>('/api/weather/currentweatherByCityCoord',
       {
         params: {
           lat: coord.lat.toString(),
@@ -41,8 +36,6 @@ export class WeatherService {
   get6DaysWeatherForecast(
     cityName: string
   ): Observable<Response<LongWeatherForecastModel>> {
-    return this.httpClient.get<Response<LongWeatherForecastModel>>(
-      this.baseUrl + "longWeatherForecast/" + cityName
-    );
+    return this.httpClient.get<Response<LongWeatherForecastModel>>('/api/weather/longWeatherForecast/' + cityName);
   }
 }
