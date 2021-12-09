@@ -14,6 +14,15 @@ import { DropdownService } from '../shared/services/dropdown.service';
 import { Clouds } from '../shared/models/Clouds';
 import { Main } from '../shared/models/main';
 import { WeatherModel } from '../shared/models/weather.model';
+import { LongWeatherForecastModel } from '../shared/models/longWeatherForecastModel';
+import { LongWeatherForecastListItemModel } from '../shared/models/longWeatherForecastListItemModel';
+import { WeatherService } from '../shared/services/weather.service';
+
+interface TableRow {
+  day: string;
+  tempC: number;
+  pressure: number;
+}
 
 @Component({
   selector: 'app-weather-filter',
@@ -26,7 +35,8 @@ export class WeatherFilterComponent implements OnInit {
 
   constructor(private router: Router,
     private fb: FormBuilder,
-    private dropDownService: DropdownService) { }
+    private dropDownService: DropdownService,
+    private weatherService: WeatherService) { }
 
   @Input() color: ThemePalette = "primary";
   showLoadingSpinner: boolean = true;
@@ -37,6 +47,11 @@ export class WeatherFilterComponent implements OnInit {
   public _cloudiness: Clouds[];
   public _temperature: Main[];
   weatherDetails: WeatherModel = new WeatherModel();
+  longWeatherModel: LongWeatherForecastModel;
+  currentWeatherDetails: LongWeatherForecastListItemModel;
+  tableData: TableRow[] = [];
+  displayedColumns: string[] = ["Day", "TempC", "Pressure"];
+  dataSource;
 
   ngOnInit(): void {
     this.formfilter = this.fb.group({
@@ -74,4 +89,21 @@ export class WeatherFilterComponent implements OnInit {
     );
   }
 
+  get6DaysWeatherForecast(cityName: string) {
+    console.log(cityName);
+    this.weatherService
+      .get6DaysWeatherForecast(cityName)
+      .subscribe((res) => {
+        this.longWeatherModel = res.responseBody;
+        this.longWeatherModel.list.forEach((element) => {
+          this.tableData.push({
+            pressure: element.main.pressure,
+            day: element.dayName,
+            tempC: element.main.tempC,
+          });
+          this.dataSource = this.tableData;
+          this.currentWeatherDetails = this.longWeatherModel.list[0];
+        });
+      });
+  }
 }
