@@ -23,8 +23,7 @@
       <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-6">
-          <button class="button" mat-raised-button color="primary" routerLink="/edit-weather-grid"
-                  (click)="get6DaysWeatherForecast(formfilter.value)">
+          <button class="button" mat-raised-button color="primary" (click)="get6DaysWeatherForecast(formfilter.value.cityName)">
             6 Days Weather Forecast
           </button>
         </div>

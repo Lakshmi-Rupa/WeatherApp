@@ -27,7 +27,8 @@ namespace DBProject.Controllers
         [HttpGet("cityDropdown")]
         public async Task<ActionResult<IEnumerable<City>>> GetCityDropdown()
         {
-            return await _context.City.OrderBy(x => x.CityId).ToListAsync();
+            return await _context.City.Where(y => y.DeleteIndicator == false).
+                OrderBy(x => x.CityId).Distinct().ToListAsync();
         }
 
         [HttpGet("cloudsDropdown")]
