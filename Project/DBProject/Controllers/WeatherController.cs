@@ -295,6 +295,15 @@ namespace DBProject.Controllers
         {
             var response = await _weatherService.GetLongWeatherForecastAsync(cityName);
 
+            var cityExists = _context.City.Where(x => x.Id == response.City.Id && x.DeleteIndicator == false).ToList();
+            var cityModel = default(City);
+            cityModel = await _context.City.FindAsync(cityExists.Select(x => x.CityId).Single());
+            
+            cityModel.Population = response.City.Population;
+            cityModel.UpdatedDate = DateTime.Now.Date;
+            _context.Entry(cityModel).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
             if (response == null)
             {
                 var res = new ApiResponse<string>
