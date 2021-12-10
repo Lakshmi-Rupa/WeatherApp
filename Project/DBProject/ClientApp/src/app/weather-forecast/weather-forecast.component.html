@@ -45,10 +45,10 @@
             <img src="../../assets/Images/weatherIcons/tempC.png" />
             <p>{{ weatherDetails.main.tempC }}</p>
           </div>
-          <!--<div class="weatherDetails-content">
-            <img src="../../assets/Images/weatherIcons/tempF.png" />
-            <p>{{ weatherDetails.main.temp }}</p>
-          </div>-->
+          <div class="weatherDetails-content">
+            <!--<img src="../../assets/Images/weatherIcons/tempF.png" />-->
+            <p> {{ weatherDetails.main.temp }} kelvin</p>
+          </div>
         </div>
         <div class="weatherDetails-item-container">
           <h2>Wind</h2>
@@ -57,7 +57,7 @@
             <p>{{ weatherDetails.wind.speed }}m/s</p>
           </div>
           <div class="weatherDetails-content">
-           <!-- <img [src]="windDegImageUrl" />-->
+            <img [src]="windDegImageUrl" />
             <p>{{ weatherDetails.wind.deg }}</p>
           </div>
         </div>

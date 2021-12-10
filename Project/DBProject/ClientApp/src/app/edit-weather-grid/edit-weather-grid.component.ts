@@ -94,28 +94,28 @@ export class EditWeatherGridComponent implements OnInit {
     }
   }
 
-  async useCityGeoLocation(lat, lon) {
-    localStorage.setItem("dataType", "cityCoord");
-    localStorage.setItem("lat", lat);
-    localStorage.setItem("lon", lon);
-    this.state = "slideOut";
-    await delay(300);
-    this.router.navigateByUrl("/weather-forecast/");
-    return;
-  }
+  //async useCityGeoLocation(lat, lon) {
+  //  localStorage.setItem("dataType", "cityCoord");
+  //  localStorage.setItem("lat", lat);
+  //  localStorage.setItem("lon", lon);
+  //  this.state = "slideOut";
+  //  await delay(300);
+  //  this.router.navigateByUrl("/weather-forecast/");
+  //  return;
+  //}
 
-  getLocation(): void {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.useCityGeoLocation(
-          position.coords.latitude,
-          position.coords.longitude
-        );
-      });
-    }
-    this.usingUserLocation = true;
-    this.dataType = DataType.LongitudeAndLatitude;
-  }
+  //getLocation(): void {
+  //  if (navigator.geolocation) {
+  //    navigator.geolocation.getCurrentPosition((position) => {
+  //      this.useCityGeoLocation(
+  //        position.coords.latitude,
+  //        position.coords.longitude
+  //      );
+  //    });
+  //  }
+  //  this.usingUserLocation = true;
+  //  this.dataType = DataType.LongitudeAndLatitude;
+  //}
 
 
   async onSubmit() {
@@ -143,17 +143,17 @@ export class EditWeatherGridComponent implements OnInit {
           return;
         }
         break;
-      case DataType.LongitudeAndLatitude:
-        {
-          if (this.usingUserLocation == false) {
-            this.useCityGeoLocation(
-              this.editForm.get("cityLatitude").value,
-              this.editForm.get("cityLongitude").value
-            );
-            return;
-          }
-        }
-        break;
+      //case DataType.LongitudeAndLatitude:
+      //  {
+      //    if (this.usingUserLocation == false) {
+      //      this.useCityGeoLocation(
+      //        this.editForm.get("cityLatitude").value,
+      //        this.editForm.get("cityLongitude").value
+      //      );
+      //      return;
+      //    }
+      //  }
+      //  break;
     }
   }
 

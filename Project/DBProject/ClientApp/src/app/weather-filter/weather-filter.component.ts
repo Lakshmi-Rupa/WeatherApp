@@ -52,6 +52,7 @@ export class WeatherFilterComponent implements OnInit {
   tableData: TableRow[] = [];
   displayedColumns: string[] = ["Day", "TempC", "Pressure"];
   dataSource;
+  public displayGrid: boolean = false;
 
   ngOnInit(): void {
     this.formfilter = this.fb.group({
@@ -91,6 +92,8 @@ export class WeatherFilterComponent implements OnInit {
 
   get6DaysWeatherForecast(cityName: string) {
     console.log(cityName);
+    this.displayGrid = true;
+    this.tableData = [];
     this.weatherService
       .get6DaysWeatherForecast(cityName)
       .subscribe((res) => {
