@@ -5,9 +5,6 @@
   <mat-card [@slideInOut]="state" class="card" id="cardform">
     <mat-card-header class="card-header">
       <mat-card-title class="title">Welcome to the weather app !!!</mat-card-title>
-      <mat-card-subtitle class="subtitle">
-        You can check your weather using one of the following ways:
-      </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p *ngIf="showError" style="color: red;">
@@ -22,17 +19,17 @@
                  autocomplete="off"
                  placeholder="Type your city name..." />
         </mat-form-field>
-        <mat-form-field class="cityid-input">
+        <!--<mat-form-field class="cityid-input">
           <mat-label>City ID</mat-label>
           <input [formControl]="form.get('cityID')"
                  matInput
                  autocomplete="off"
                  placeholder="Type your city id..." />
           <mat-icon (click)="goToCityIDs()" matSuffix>contact_support</mat-icon>
-        </mat-form-field>
+        </mat-form-field>-->
 
-        <p class="divider">Or use city goegraphic location:</p>
-        <table class="full-width" cellspacing="0">
+        <!--<p class="divider">Or use city goegraphic location:</p>-->
+        <!--<table class="full-width" cellspacing="0">
           <tr>
             <td>
               <mat-form-field class="">
@@ -53,9 +50,9 @@
           </tr>
         </table>
 
-        <button mat-raised-button [color]="color" (click)="getLocation()">
+        <button class="button" mat-raised-button [color]="color" (click)="getLocation()">
           Use my location
-        </button>
+        </button>-->
       </form>
     </mat-card-content>
     <mat-card-actions class="action" fxLayoutAlign="center start">

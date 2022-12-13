@@ -1,4 +1,6 @@
 export class Main {
+  mainId: number;
+  cityId: number;
   temp: number;
   pressure: number;
   humidity: number;

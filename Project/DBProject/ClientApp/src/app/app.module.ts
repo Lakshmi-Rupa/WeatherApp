@@ -23,6 +23,13 @@ import { WeatherSearchComponent } from './weather-search/weather-search.componen
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
 import { WeatherService } from "./shared/services/weather.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { WeatherFilterComponent } from './weather-filter/weather-filter.component';
+import { MatSelectModule } from '@angular/material/select';
+import { DropdownService } from "./shared/services/dropdown.service";
+import { WeatherGridComponent } from './weather-grid/weather-grid.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { EditWeatherGridComponent } from './edit-weather-grid/edit-weather-grid.component';
 
 
 @NgModule({
@@ -33,7 +40,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     CounterComponent,
     FetchDataComponent,
     WeatherSearchComponent,
-    WeatherForecastComponent
+    WeatherForecastComponent,
+    WeatherFilterComponent,
+    WeatherGridComponent,
+    EditWeatherGridComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +57,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatInputModule,
     MatProgressSpinnerModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
@@ -57,12 +69,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
       { path: 'weather-search', component: WeatherSearchComponent },
       { path: 'weather-forecast/:details', component: WeatherForecastComponent },
       { path: 'weather-forecast', component: WeatherForecastComponent },
+      { path: 'weather-filter', component: WeatherFilterComponent },
+      { path: 'weather-grid', component: WeatherGridComponent },
+      { path: 'edit-weather-grid', component: EditWeatherGridComponent },
     ], { relativeLinkResolution: 'legacy' })
   ],
   exports: [
    
   ],
-  providers: [WeatherService],
+  providers: [WeatherService, DropdownService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

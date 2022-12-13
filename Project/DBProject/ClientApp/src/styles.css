@@ -13,15 +13,18 @@
 .container {
   min-height: 90vh;
   min-width: 100%;
-  background-image: url("./assets/Images/background.jpg");
+  background-image: url("./assets/Images/background-image.jpeg");
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
-  width: 600px;
-  min-height: 60vh;
-  background-color: #c4c4c4;
+  width: 700px;
+  min-height: 75vh;
+  background-color: rgb(249 247 247 / 50%);
   border-radius: 150px;
   transform: translateX(-300%);
 }

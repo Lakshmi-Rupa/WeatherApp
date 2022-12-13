@@ -25,17 +25,18 @@
           <mat-icon>arrow_back</mat-icon>
         </button>
         <h1>{{ weatherDetails.name }}</h1>
-        <button mat-raised-button
+        <!--<button mat-raised-button
                 color="primary"
                 class="btn-lngForecast"
                 (click)="getFiveDaysForecast()">
           6 days forecast
-        </button>
+        </button>-->
       </div>
 
       <img class="img-weatherCondition" [src]="currentWeatherImage" alt="" />
       <p>{{ weatherDetails.weather[0].description }}</p>
     </div>
+    <br/>
     <div class="weatherDetails" *ngIf="showError == false">
       <div class="weatherDetails-item">
         <div class="weatherDetails-item-container">
@@ -45,8 +46,8 @@
             <p>{{ weatherDetails.main.tempC }}</p>
           </div>
           <div class="weatherDetails-content">
-            <img src="../../assets/Images/weatherIcons/tempF.png" />
-            <p>{{ weatherDetails.main.temp }}</p>
+            <!--<img src="../../assets/Images/weatherIcons/tempF.png" />-->
+            <p> {{ weatherDetails.main.temp }} kelvin</p>
           </div>
         </div>
         <div class="weatherDetails-item-container">
@@ -56,7 +57,7 @@
             <p>{{ weatherDetails.wind.speed }}m/s</p>
           </div>
           <div class="weatherDetails-content">
-           <!-- <img [src]="windDegImageUrl" />-->
+            <img [src]="windDegImageUrl" />
             <p>{{ weatherDetails.wind.deg }}</p>
           </div>
         </div>
@@ -66,7 +67,7 @@
           <h2>Pressure</h2>
           <div class="weatherDetails-content">
             <img src="../../assets/Images/weathericons/pressure.png" />
-            <p>{{ weatherDetails.main.pressure }}</p>
+            <p>{{ weatherDetails.main.pressure }} hPa</p>
           </div>
           <div class="weatherDetails-content">
             <img src="../../assets/Images/weatherIcons/humidity.png" />
@@ -99,12 +100,12 @@
             <img src="../../assets/Images/weatherIcons/country.png" />
             <p>{{ weatherDetails.sys.country }}</p>
           </div>
-          <div class="weatherDetails-content">
+          <!--<div class="weatherDetails-content">
             <p class="city-details-lonlan">
               lon {{ weatherDetails.coord.lon }} lan
               {{ weatherDetails.coord.lat }}
             </p>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>

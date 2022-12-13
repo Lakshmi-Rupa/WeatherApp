@@ -1,13 +1,15 @@
 using DBProject.Data;
 using DBProject.Extensions;
+using DBProject.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Http.Extensions;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -45,13 +47,35 @@ namespace DBProject
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.Configure<FormOptions>(o =>
+            {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
+
+            var connectionString = Configuration.GetConnectionString("WeatherDbConnection");
+            var builder = new SqlConnectionStringBuilder(connectionString);
+            connectionString = builder.ConnectionString;
+
+            services.AddDbContext<WeatherDbContext>(
+                options => options.UseSqlServer(connectionString),
+                ServiceLifetime.Transient,
+                ServiceLifetime.Transient
+            );
+            services.AddDistributedSqlServerCache(options =>
+            {
+                options.ConnectionString = connectionString;
+                options.SchemaName = "dbo";
+                //options.TableName = "WEB_CACHE";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             Log.Information("Configuring....", this);
-
+            app.UseForwardedHeaders();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -70,7 +94,7 @@ namespace DBProject
                     var contextFeature = ctx.Features.Get<IExceptionHandlerFeature>();
                     if (contextFeature != null)
                     {
-                        await ctx.Response.WriteAsync(new ExceptionInfo()
+                            await ctx.Response.WriteAsync(new ExceptionInfo()
                         {
                             StatusCode = ctx.Response.StatusCode,
                             Message = "Internal Server Error."

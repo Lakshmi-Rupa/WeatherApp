@@ -1,4 +1,6 @@
 class Coord {
+  coordId: number;
+  cityId: number;
   lon: number;
   lat: number;
 
